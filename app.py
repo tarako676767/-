@@ -42,4 +42,7 @@ def execute():
         return jsonify({'message': msg})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    
+    # Renderから割り当てられるPORTを取得（ローカルの場合は5000）
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
