@@ -7,3 +7,4 @@ Pillow
 useragent-changer
 PySocks
 Flask
+gunicorn
