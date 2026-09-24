@@ -24,6 +24,23 @@ import tsum
 import tsum_guest
 from tsum_forge import Forge
 
+# ==========================================
+# main13.py と共通のHTML読み込み・管理処理
+# ==========================================
+HTML_FILE_PATH = os.path.join(HERE, "index.html")
+
+def load_html_content():
+    """main13.py と同様に外部の index.html を読み込む処理"""
+    if os.path.exists(HTML_FILE_PATH):
+        try:
+            with open(HTML_FILE_PATH, "r", encoding="utf-8") as f:
+                return f.read()
+        except Exception as e:
+            print(f"[tsum] HTML読み込みエラー: {e}")
+            return "<h1>HTMLの読み込みに失敗しました</h1>"
+    return "<h1>index.html が見つかりません</h1>"
+
+# 設定ファイルのロード
 _cfg_name = os.environ.get("TSUM_BOT_CONFIG", "bot_config.json")
 CONFIG_FILE = _cfg_name if os.path.isabs(_cfg_name) else os.path.join(HERE, _cfg_name)
 print(f"[tsum] 設定ファイル: {os.path.basename(CONFIG_FILE)}")
